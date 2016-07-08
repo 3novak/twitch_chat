@@ -23,8 +23,8 @@ def channel_part(irc, chan):
 def init(HOST='irc.twitch.tv',
          PORT=6667,
          CHAN='#trick2g',
-         NICK='novakainerx',
-         PASS='oauth:66pehrgkrt1l5c5z1wbaszejzw1znf'):
+         NICK='samesame',
+         PASS='oauth:samesamesame'):
     HOST = HOST
     PORT = PORT
     CHAN = CHAN
