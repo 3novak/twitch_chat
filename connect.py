@@ -103,7 +103,7 @@ def collect_data(file_dest):
 
 
 if __name__ == '__main__':
-
+    # update to capture various streamers
     call_dict = init(CHAN='#tsm_dyrus')
 
     irc = socket.socket()
