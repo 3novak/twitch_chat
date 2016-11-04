@@ -24,7 +24,7 @@ def users_by_stream(df, users=None, streams=None, nrows=None, sort_on=None):
     # a list of users or streams can be passed in to filter the rows of the
     # data frame
     # nrows defines the size of the returned table. the default is to include
-    # all users, but the first ten rows may be desired.
+    # all users, but the first ten rows may be the most relevant, for instance.
     # the default is to sort on the first stream in the data.
     if users != None:
         df = df.loc[df['name'].isin(users)]
@@ -55,27 +55,20 @@ def tyme_series(data, interval):
     data['interval'] = (data['diff']/interval).astype(int)
     grp_intervals = data.groupby(['interval', 'stream'])['ones'].sum()
 
-    print(grp_intervals)
     return grp_intervals
-    #ts = seaborn.tsplot(time='datetime', value='ones', condition='stream', data=data)
-    #plt.show()
+
 
 if __name__ == '__main__':
     df = p.load(open('twitch_sample.p', 'rb'))
-    #df = p.load(open('/Users/ewnovak/Documents/projects/twitch/pickled_lck1.p', 'rb'))
-    #df['stream'] = ''
-    #df.loc[0:100, 'stream'] = 'lck1'
-    #time_inquiry(df=df, bystream=True, num_vals=3)
-    ## df.apply(time_inquiry, axis=0)
+
     time_inquiry(df=df, bystream=True, num_vals=3, datetime='datetime')
     print('\n\n\n')
+
     print(users_by_stream(df=df, nrows=3, sort_on=['trick2g', 'loltyler1', 'cowsep']))
     print('\n\n\n')
-    #seaborn.pointplot(x='datetime', y='ones', data=df.loc[df['stream'] == 'cowsep'], join=False)
-    haw = tyme_series(data=df, interval=3600)
-    haw = pd.DataFrame(haw)
-    haw.reset_index(inplace=True)
-    print(haw.columns)
-    print(haw)
-    seaborn.pointplot(x='interval', y='ones', data=haw, hue='stream')
+
+    ts = tyme_series(data=df, interval=3600)
+    ts = pd.DataFrame(ts)
+    ts.reset_index(inplace=True)
+    seaborn.pointplot(x='interval', y='ones', data=ts, hue='stream')
     plt.show()

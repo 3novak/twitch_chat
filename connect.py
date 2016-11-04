@@ -19,6 +19,7 @@ def channel_join(irc, chan):
 def channel_part(irc, chan):
     irc.send(bytes('PART %s\r\n' % chan, 'UTF-8'))
 
+
 # initialize the info to be passed via the connection
 def init(HOST='irc.twitch.tv',
          PORT=6667,
@@ -32,6 +33,7 @@ def init(HOST='irc.twitch.tv',
     PASS = PASS
 
     return {'HOST': HOST, 'PORT': PORT, 'CHAN': CHAN, 'NICK': NICK, 'PASS': PASS}
+
 
 def get_sender(msg):
     result = ''
@@ -57,6 +59,7 @@ def get_message(msg):
 def parse_message(msg):
     if len(msg) >= 1:
         msg = msg.split(' ')
+
 
 def collect_data(file_dest):
     with open(file_dest, 'a') as f:
@@ -103,7 +106,7 @@ def collect_data(file_dest):
 
 
 if __name__ == '__main__':
-
+    # update to capture various streamers
     call_dict = init(CHAN='#tsm_dyrus')
 
     irc = socket.socket()

@@ -1,4 +1,5 @@
 # read in the raw text pulled from twitch streams
+# after some minor processing, pickle the data for reference later
 
 import pandas as pd
 import pickle as p
@@ -37,6 +38,7 @@ def aggregate_dfs(df_names='default', aggregate_dest='test.p'):
 
 if __name__ == '__main__':
     make_dfs(['cowsep', 'eulcs1', 'imaqtpie', 'lck1', 'loltyler1', 'nalcs1', 'trick2g', 'tsm_doublelift', 'tsm_dyrus', 'voyboy'])
+    # the aggregations are divided into two groups because of file size.
     print('first round of aggregations...')
     aggregate_dfs(df_names=['pickled_cowsep.p', 'pickled_eulcs1.p', 'pickled_imaqtpie.p', 'pickled_lck1.p', 'pickled_loltyler1.p'], aggregate_dest='all_streams1.p')
     print('round 2...')
