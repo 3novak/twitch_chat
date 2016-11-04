@@ -23,8 +23,8 @@ def channel_part(irc, chan):
 def init(HOST='irc.twitch.tv',
          PORT=6667,
          CHAN='#trick2g',
-         NICK='novakainerx',
-         PASS='oauth:66pehrgkrt1l5c5z1wbaszejzw1znf'):
+         NICK='samesame',
+         PASS='oauth:samesamesamesame'):
     HOST = HOST
     PORT = PORT
     CHAN = CHAN
@@ -65,7 +65,7 @@ def collect_data(file_dest):
         msg_num = 0
         while True:
             try:
-                data = data + irc.recv(1024).decode('UTF-8', errors='ignore')
+                data = data + irc.recv(1024).decode('UTF-8')
                 data_split = re.split(r'[~\r\n]+', data)
                 data = data_split.pop()
 
@@ -104,7 +104,7 @@ def collect_data(file_dest):
 
 if __name__ == '__main__':
 
-    call_dict = init(CHAN='#voyboy')
+    call_dict = init(CHAN='#tsm_dyrus')
 
     irc = socket.socket()
     irc.connect((call_dict['HOST'], call_dict['PORT']))
